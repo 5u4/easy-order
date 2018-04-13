@@ -3,7 +3,7 @@
         <navbar></navbar>
         <v-container style="position: relative; top: 96px;">
         </v-container>
-        <auth></auth>
+        <auth v-if="logining"></auth>
     </v-flex>
 </template>
 
@@ -15,6 +15,11 @@ export default {
     components: {
         Navbar,
         Auth
+    },
+    computed: {
+        logining() {
+            return this.$store.getters.isLogining;
+        }
     }
 }
 </script>

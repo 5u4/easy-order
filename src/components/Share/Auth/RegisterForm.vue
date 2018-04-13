@@ -84,10 +84,6 @@ export default {
                 password_confirmation: this.passwordConfirmation
             }).then(response => { /* User Created */
                 this.$store.commit('login', response.data);
-                this.username = '';
-                this.email = '';
-                this.password = '';
-                this.passwordConfirmation = '';
             }, error => { /* Errors */
                 this.responseText = '';
                 const errorMessages = error.body.error.message;

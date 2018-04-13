@@ -87,8 +87,6 @@ export default {
 
             this.resource.login(request).then(response => { /* Logged in successfully */
                 this.$store.commit('login', response.data);
-                this.username = '';
-                this.password = '';
             }, error => {
                 this.responseText = error.body.error.message;
                 this.showMessage = true;
