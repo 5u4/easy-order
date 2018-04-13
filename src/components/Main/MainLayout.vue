@@ -1,7 +1,7 @@
 <template>
     <v-flex style="height: 100%; backgroundColor: #EFEBE9;">
         <navbar></navbar>
-        <v-container id="scrolling" style="position: relative; top: 96px;">
+        <v-container style="position: relative; top: 96px;">
         </v-container>
         <auth></auth>
     </v-flex>
