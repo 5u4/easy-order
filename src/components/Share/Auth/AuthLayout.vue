@@ -7,8 +7,8 @@
             <v-container>
                 <login v-if="login"></login>
                 <register v-else></register>
-                <v-btn block flat @click="login = !login">
-                    {{ !login ? 'Already have account? Login!' : 'Do not have account yet? Register!' }}
+                <v-btn block flat small @click="login = !login">
+                    {{ !login ? 'Already have account? Login!' : 'New user? Register!' }}
                 </v-btn>
             </v-container>
         </v-card>
