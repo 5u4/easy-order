@@ -22,7 +22,7 @@ import Register from './RegisterForm';
 export default {
     data() {
         return {
-            login: false
+            login: true
         }
     },
     components: {
