@@ -23,7 +23,7 @@
                     <!-- Login + Register -->
                     <v-layout v-else>
                         <v-flex>
-                            <v-btn small flat>Login/Register</v-btn>
+                            <v-btn small flat @click="auth()">Login/Register</v-btn>
                         </v-flex>
                     </v-layout>
                 </v-flex>
@@ -41,7 +41,12 @@ export default {
     },
     computed: {
         isLoggedIn() {
-            return this.$store.state.User.isLoggedIn;
+            return this.$store.getters.isLoggedIn;
+        }
+    },
+    methods: {
+        auth() {
+            this.$store.commit('toggleIsLogining');
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <v-jumbotron style="height: 100%; backgroundColor: #EFEBE9;">
+    <v-flex style="height: 100%; backgroundColor: #EFEBE9;">
         <v-container grid-list-md text-md-center>
             <v-layout column wrap>
                 <v-flex style="margin-top: 25%; margin-bottom: 20%;">
@@ -12,7 +12,7 @@
                 </v-flex>
             </v-layout>
         </v-container>
-    </v-jumbotron>
+    </v-flex>
 </template>
 
 <script>
