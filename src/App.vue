@@ -1,7 +1,9 @@
 <template>
-    <v-app id="app">
-        <router-view/>
-    </v-app>
+    <div id="app">
+        <v-app>
+            <router-view/>
+        </v-app>
+    </div>
 </template>
 
 <script>
@@ -12,7 +14,7 @@ export default {
 
 <style>
 #app {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
