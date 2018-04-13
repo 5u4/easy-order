@@ -83,30 +83,16 @@ export default {
                 password: this.password,
                 password_confirmation: this.passwordConfirmation
             }).then(response => { /* User Created */
-                /* Login User */
+                this.$store.commit('login', response.data);
+                this.username = '';
+                this.email = '';
+                this.password = '';
+                this.passwordConfirmation = '';
             }, error => { /* Errors */
-                try {
-                    const errors = error.body.error.message;
-
-                    this.responseText = '';
-
-                    if (errors.username) {
-                        this.responseText += errors.username + " ";
-                    }
-
-                    if (errors.email) {
-                        this.responseText += errors.email + " ";
-                    }
-
-                    if (errors.password) {
-                        this.responseText += errors.password + " ";
-                    }
-
-                    if (errors.password_confirmation) {
-                        this.responseText += errors.password_confirmation + " ";
-                    }
-                } catch (e) {
-                    this.responseText = e.message;
+                this.responseText = '';
+                const errorMessages = error.body.error.message;
+                for (let key in errorMessages) {
+                    this.responseText += errorMessages[key] + " ";
                 }
                 this.showMessage = true;
             });

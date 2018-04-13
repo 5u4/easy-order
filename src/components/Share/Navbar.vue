@@ -13,11 +13,11 @@
                         <v-flex xs6>
                             <v-btn small flat disabled>
                                 <v-icon>person</v-icon>
-                                Username
+                                {{ currentUser ? currentUser.username : 'Unauthenticated' }}
                             </v-btn>
                         </v-flex>
                         <v-flex xs1>
-                            <v-btn small flat>Logout</v-btn>
+                            <v-btn small flat @click="logout()">Logout</v-btn>
                         </v-flex>
                     </v-layout>
                     <!-- Login + Register -->
@@ -42,11 +42,17 @@ export default {
     computed: {
         isLoggedIn() {
             return this.$store.getters.isLoggedIn;
+        },
+        currentUser() {
+            return this.$store.getters.getCurrentUser;
         }
     },
     methods: {
         auth() {
             this.$store.commit('toggleIsLogining');
+        },
+        logout() {
+            this.$store.commit('logout');
         }
     }
 }

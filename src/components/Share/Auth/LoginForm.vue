@@ -1,5 +1,8 @@
 <template>
     <v-form lazy-validation v-model="valid" ref="form">
+        <v-alert type="error" dismissible v-model="showMessage">
+            {{responseText}}
+        </v-alert>
         <!-- Username/Email -->
         <v-layout row>
             <v-flex xs10>
@@ -30,10 +33,11 @@
             v-model="password" 
             :rules="passwordRules" 
             required 
-            type="password">
+            type="password"
+            @keyup.enter="login()">
         </v-text-field>
         <!-- Login -->
-        <v-btn flat block color="success" :disabled="!valid">Login</v-btn>
+        <v-btn flat block color="success" :disabled="!valid" @click="login()">Login</v-btn>
     </v-form>
 </template>
 
@@ -56,12 +60,39 @@ export default {
             passwordRules: [
                 v => !!v || 'Password is required',
                 v => (v && v.length >= 8) || 'Password should be longer than 8 characters'
-            ]
+            ],
+            resource: {},
+            responseText: '',
+            showMessage: false
         }
+    },
+    created() {
+        const actions = {
+            login: {method: 'POST'}
+        };
+        this.resource = this.$resource('api/v1/users/login', {}, actions);
     },
     methods: {
         toggleLoginMethod() {
             this.usingUsername = !this.usingUsername;
+        },
+        login() {
+            let request = {'password': this.password};
+
+            if (this.usingUsername) {
+                request['username'] = this.username;
+            } else {
+                request['email'] = this.email;
+            }
+
+            this.resource.login(request).then(response => { /* Logged in successfully */
+                this.$store.commit('login', response.data);
+                this.username = '';
+                this.password = '';
+            }, error => {
+                this.responseText = error.body.error.message;
+                this.showMessage = true;
+            });
         }
     }
 }
