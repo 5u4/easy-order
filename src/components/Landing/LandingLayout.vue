@@ -3,10 +3,10 @@
         <v-container grid-list-md text-md-center>
             <v-layout column wrap>
                 <v-flex style="margin-top: 25%; margin-bottom: 20%;">
-                    <logo></logo>
+                    <logo :fontSize="3"></logo>
                 </v-flex>
                 <v-flex>
-                    <v-btn flat large>
+                    <v-btn flat large to="/main">
                         Start
                     </v-btn>
                 </v-flex>
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import logo from '../Share/Logo';
+import Logo from '../Share/Logo';
 
 export default {
     components: {
-        logo
+        Logo
     }
 }
 </script>

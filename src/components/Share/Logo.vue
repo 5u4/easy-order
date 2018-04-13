@@ -1,18 +1,17 @@
 <template>
-    <h3>
+    <h3 :style="'fontFamily: \'Sacramento\', cursive; fontSize: ' + fontSize + 'em;'">
         EasyOrder
     </h3>
 </template>
 
 <script>
 export default {
-
+    props: {
+        fontSize: Number
+    }
 }
 </script>
 
 <style>
-h3 {
-    font-family: 'Sacramento', cursive;
-    font-size: 3em;
-}
+
 </style>
