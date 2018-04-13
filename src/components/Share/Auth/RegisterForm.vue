@@ -58,11 +58,11 @@ export default {
             passwordConfirmation: '',
             passwordRules: [
                 v => !!v || 'Password is required',
-                v => (v && v.length >= 8) || 'Password need at least 8 characters'
+                v => (v && v.length >= 8) || 'Password at least 8 characters'
             ],
             passwordConfirmationRules: [
                 v => !!v || 'Password confirmation is required',
-                v => (v && v == this.password) || 'Does not match password'
+                v => (v && v == this.password) || 'Password confirmation does not match password'
             ],
             resource: {},
             responseText: '',

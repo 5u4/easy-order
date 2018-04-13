@@ -55,7 +55,7 @@ export default {
             password: '',
             passwordRules: [
                 v => !!v || 'Password is required',
-                v => (v && v.length >= 8) || 'Password is longer than 8 characters'
+                v => (v && v.length >= 8) || 'Password should be longer than 8 characters'
             ]
         }
     },
