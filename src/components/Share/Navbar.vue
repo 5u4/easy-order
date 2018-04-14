@@ -11,7 +11,7 @@
                     <v-layout>
                         <!-- Shopping Cart -->
                         <v-flex xs4 offset-xs1>
-                            <v-btn flat @click="showCart()" v-if="isLoggedIn || totalItems > 0">
+                            <v-btn flat @click="showCart()" v-if="showCartIcon">
                                 <v-badge>
                                     <span slot="badge" v-if="totalItems > 0">
                                         {{ totalItems }}
@@ -28,12 +28,16 @@
                                     {{ currentUser ? currentUser.username : 'Unauthenticated' }}
                                 </v-btn>
                                 <v-list>
+                                    <!-- Items -->
+                                    <v-list-tile to="/main">
+                                        Items
+                                    </v-list-tile>
                                     <!-- Manage -->
-                                    <v-list-tile v-if="isAdmin">
+                                    <v-list-tile v-if="isAdmin" to="/dashboard">
                                         Manage
                                     </v-list-tile>
                                     <!-- Logout -->
-                                    <v-list-tile @click="logout()">
+                                    <v-list-tile @click="logout()" color="red">
                                         Logout
                                     </v-list-tile>
                                 </v-list>
@@ -69,6 +73,9 @@ export default {
         },
         isAdmin() {
             return this.$store.getters.isAdmin;
+        },
+        showCartIcon() {
+            return (this.isLoggedIn || this.totalItems > 0) && this.$route.name == 'main';
         }
     },
     methods: {
