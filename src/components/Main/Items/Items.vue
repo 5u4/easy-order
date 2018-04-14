@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-layout row wrap>
-            <v-flex v-for="item in items" :key="item.id" xs3>
+            <v-flex v-for="item in items" :key="item.id" xs3 @click="showDescription(item.id)">
                 <item :item="item"></item>
             </v-flex>
         </v-layout>
@@ -35,6 +35,12 @@ export default {
     },
     components: {
         Item
+    },
+    methods: {
+        showDescription(itemId) {
+            this.$store.commit('toggleShowItemModal');
+            this.$store.commit('showItemDescription', {itemId: itemId})
+        }
     }
 }
 </script>

@@ -1,10 +1,16 @@
 <template>
     <v-card flat color="transparent" height="200px" hover disabled width="90%" style="margin-bottom: 10%;">
-        <v-card-media height="160px" :src="Placeholder">
+        <v-card-media height="140px" :src="Placeholder">
         </v-card-media>
         <v-card-text>
-            {{ item.name }}
-            ${{ item.price }}
+            <v-layout column>
+                <v-flex>
+                    {{ item.name }}
+                </v-flex>
+                <v-flex>
+                    ${{ item.price }}
+                </v-flex>
+            </v-layout>
         </v-card-text>
     </v-card>
 </template>

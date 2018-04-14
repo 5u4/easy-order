@@ -5,6 +5,7 @@
         <v-container>
             <items></items>
         </v-container>
+        <item-modal></item-modal>
         <auth v-if="logining"></auth>
         <shopping-cart v-if="showCart"></shopping-cart>
     </v-flex>
@@ -13,6 +14,7 @@
 <script>
 import Navbar from '../Share/Navbar';
 import Items from './Items/Items';
+import ItemModal from './Items/ItemModal';
 import Auth from '../Share/Auth/AuthLayout';
 import ShoppingCart from '../Share/ShoppingCart/ShoppingCart';
 
@@ -20,6 +22,7 @@ export default {
     components: {
         Navbar,
         Items,
+        ItemModal,
         Auth,
         ShoppingCart
     },
