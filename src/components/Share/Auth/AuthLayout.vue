@@ -1,7 +1,7 @@
 <template>
     <v-dialog max-width="500px" v-model="logining">
         <v-card flat>
-            <v-card-title>
+            <v-card-title primary-title>
                 {{ login ? 'Login' : 'Register' }}
             </v-card-title>
             <v-container>

@@ -3,20 +3,25 @@
         <v-container fluid>
             <v-layout>
                 <!-- Logo -->
-                <v-flex xs4 offset-xs4>
+                <v-flex xs2 offset-xs5>
                     <logo :fontSize="2"></logo>
                 </v-flex>
                 <!-- User State -->
-                <v-flex xs4>
+                <v-flex xs5>
                     <!-- User Name + Logout -->
                     <v-layout v-if="isLoggedIn">
-                        <v-flex xs6>
+                        <v-flex xs4>
                             <v-btn small flat disabled>
                                 <v-icon>person</v-icon>
                                 {{ currentUser ? currentUser.username : 'Unauthenticated' }}
                             </v-btn>
                         </v-flex>
                         <v-flex xs1>
+                            <v-btn small flat @click="showCart()">
+                                <v-icon>shopping_cart</v-icon>
+                            </v-btn>
+                        </v-flex>
+                        <v-flex xs1 offset-xs2>
                             <v-btn small flat @click="logout()">Logout</v-btn>
                         </v-flex>
                     </v-layout>
@@ -53,6 +58,9 @@ export default {
         },
         logout() {
             this.$store.commit('logout');
+        },
+        showCart() {
+            this.$store.commit('toggleCartShow');
         }
     }
 }
