@@ -1,11 +1,6 @@
 const cart = {
     state: {
-        items: [
-            {id: 1, name: 'apple', price: 2.52, quantity: 1},
-            {id: 2, name: 'apple', price: 2.52, quantity: 2},
-            {id: 3, name: 'apple', price: 2.52, quantity: 3},
-            {id: 4, name: 'apple', price: 2.52, quantity: 4}
-        ],
+        items: [],
         show: false
     },
     getters: {

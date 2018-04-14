@@ -10,8 +10,8 @@
                 <v-flex xs5>
                     <v-layout>
                         <!-- Shopping Cart -->
-                        <v-flex xs4 offset-xs1 v-if="isLoggedIn || totalItems > 0">
-                            <v-btn flat @click="showCart()">
+                        <v-flex xs4 offset-xs1>
+                            <v-btn flat @click="showCart()" v-if="isLoggedIn || totalItems > 0">
                                 <v-badge>
                                     <span slot="badge" v-if="totalItems > 0">
                                         {{ totalItems }}
