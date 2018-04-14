@@ -14,7 +14,7 @@
 import Navbar from '../Share/Navbar';
 import Items from './Items/Items';
 import Auth from '../Share/Auth/AuthLayout';
-import ShoppingCart from '../Share/ShoppingCart';
+import ShoppingCart from '../Share/ShoppingCart/ShoppingCart';
 
 export default {
     components: {

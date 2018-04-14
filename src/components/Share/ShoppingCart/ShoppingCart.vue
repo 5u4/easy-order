@@ -6,26 +6,22 @@
             </v-card-title>
             <v-container>
                 <v-layout row wrap>
-                    <v-flex xs4 v-for="item in cartItems" :key="item.id">
-                        <v-card width="90%" flat height="45px">
-                            <v-layout>
-                                <v-flex xs3 offset-xs1>{{ item.name }}</v-flex>
-                                <v-flex xs3>{{ item.quantity }}</v-flex>
-                                <v-flex xs3>${{ (item.price * item.quantity).toFixed(2) }}</v-flex>
-                            </v-layout>
-                        </v-card>
+                    <v-flex xs12 v-for="item in cartItems" :key="item.id">
+                        <cart-item :item="item"></cart-item>
                     </v-flex>
                 </v-layout>
                 <v-flex>
                     Total Price: ${{ totalPrice }}
                 </v-flex>
-                <v-btn flat small block>Place Order</v-btn>
+                <v-btn flat small block :disabled="totalPrice <= 0">Place Order</v-btn>
             </v-container>
         </v-card>
     </v-dialog>
 </template>
 
 <script>
+import CartItem from './CartItem';
+
 export default {
     computed: {
         showCart: {
@@ -42,6 +38,9 @@ export default {
         totalPrice() {
             return this.$store.getters.getTotalPrice;
         }
+    },
+    components: {
+        CartItem
     }
 }
 </script>
