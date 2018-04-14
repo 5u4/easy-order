@@ -2,8 +2,13 @@
     <v-flex style="height: 100%; backgroundColor: #EFEBE9;">
         <v-container grid-list-md text-md-center>
             <v-layout column wrap>
-                <v-flex style="margin-top: 25%; margin-bottom: 20%;">
-                    <logo :fontSize="3"></logo>
+                <v-flex style="margin-top: 20%; margin-bottom: 4%;">
+                    <logo :fontSize="5"></logo>
+                </v-flex>
+                <v-flex style="margin-bottom: 21%">
+                    <span class="grey--text text-xs-center">
+                        An easy content management tool
+                    </span>
                 </v-flex>
                 <v-flex>
                     <v-btn flat large to="/main">
@@ -25,6 +30,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+span {
+    font-family: 'Sacramento', cursive;
+    font-size: 1.75em;
+}
 </style>
