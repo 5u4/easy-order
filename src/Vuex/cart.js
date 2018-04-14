@@ -13,10 +13,13 @@ const cart = {
             return state.items;
         },
         getCartItemCount(state) {
-            let sum = 0;
-            for (item in state.items) {
-                sum += item.quantity;
+            if (!state.items) {
+                return 0;
             }
+            let sum = 0;
+            state.items.forEach(item => {
+                sum += item.quantity;
+            });
             return sum;
         },
         getTotalPrice(state) {
