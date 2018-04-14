@@ -1,6 +1,5 @@
 <template>
     <v-flex style="height: 100%; backgroundColor: #EFEBE9;">
-        <navbar></navbar>
         <v-container style="height: 96px;"></v-container>
         <v-container>
             <items></items>
@@ -12,7 +11,6 @@
 </template>
 
 <script>
-import Navbar from '../Share/Navbar';
 import Items from './Items/Items';
 import ItemModal from './Items/ItemModal';
 import Auth from '../Share/Auth/AuthLayout';
@@ -20,7 +18,6 @@ import ShoppingCart from '../Share/ShoppingCart/ShoppingCart';
 
 export default {
     components: {
-        Navbar,
         Items,
         ItemModal,
         Auth,

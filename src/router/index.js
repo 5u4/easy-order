@@ -10,10 +10,12 @@ export default new Router({
     routes: [
         {
             path: '/',
+            name: 'landing',
             component: Landing
         },
         {
             path: '/main',
+            name: 'main',
             component: Main
         }
     ]

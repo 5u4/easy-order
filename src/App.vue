@@ -1,14 +1,25 @@
 <template>
     <div id="app">
         <v-app>
+            <navbar v-if="currentRoute != 'landing'"></navbar>
             <router-view/>
         </v-app>
     </div>
 </template>
 
 <script>
+import Navbar from './components/Share/Navbar';
+
 export default {
-    name: 'App'
+    name: 'App',
+    components: {
+        Navbar
+    },
+    computed: {
+        currentRoute() {
+            return this.$route.name;
+        }
+    }
 }
 </script>
 

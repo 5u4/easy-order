@@ -1,5 +1,5 @@
 <template>
-    <v-dialog max-width="700px" v-model="show">
+    <v-dialog max-width="700px" v-model="show" v-if="show">
         <v-card>
             <v-layout row>
                 <!-- Picture -->
