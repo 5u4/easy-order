@@ -18,7 +18,12 @@
                         </v-flex>
                         <v-flex xs1>
                             <v-btn small flat @click="showCart()">
-                                <v-icon>shopping_cart</v-icon>
+                                <v-badge>
+                                    <span slot="badge" v-if="totalItems > 0">
+                                        {{ totalItems }}
+                                    </span>
+                                    <v-icon>shopping_cart</v-icon>
+                                </v-badge>
                             </v-btn>
                         </v-flex>
                         <v-flex xs1 offset-xs2>
@@ -50,6 +55,9 @@ export default {
         },
         currentUser() {
             return this.$store.getters.getCurrentUser;
+        },
+        totalItems() {
+            return this.$store.getters.getCartItemCount;
         }
     },
     methods: {
