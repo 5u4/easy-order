@@ -17,6 +17,13 @@ const user = {
         },
         getCurrentUser(state) {
             return state.currentUser;
+        },
+        isAdmin(state) {
+            if (state.currentUser) {
+                return state.currentUser.is_admin;
+            } else {
+                return false;
+            }
         }
     },
     mutations: {

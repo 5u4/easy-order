@@ -8,16 +8,10 @@
                 </v-flex>
                 <!-- User State -->
                 <v-flex xs5>
-                    <!-- User Name + Logout -->
-                    <v-layout v-if="isLoggedIn">
-                        <v-flex xs4>
-                            <v-btn small flat disabled>
-                                <v-icon>person</v-icon>
-                                {{ currentUser ? currentUser.username : 'Unauthenticated' }}
-                            </v-btn>
-                        </v-flex>
-                        <v-flex xs1>
-                            <v-btn small flat @click="showCart()">
+                    <v-layout>
+                        <!-- Shopping Cart -->
+                        <v-flex xs4 offset-xs1 v-if="isLoggedIn || totalItems > 0">
+                            <v-btn flat @click="showCart()">
                                 <v-badge>
                                     <span slot="badge" v-if="totalItems > 0">
                                         {{ totalItems }}
@@ -26,13 +20,27 @@
                                 </v-badge>
                             </v-btn>
                         </v-flex>
-                        <v-flex xs1 offset-xs2>
-                            <v-btn small flat @click="logout()">Logout</v-btn>
+                        <!-- User -->
+                        <v-flex xs5 v-if="isLoggedIn">
+                            <v-menu offset-y open-on-hover>
+                                <v-btn flat slot="activator">
+                                    <v-icon>person</v-icon>
+                                    {{ currentUser ? currentUser.username : 'Unauthenticated' }}
+                                </v-btn>
+                                <v-list>
+                                    <!-- Manage -->
+                                    <v-list-tile v-if="isAdmin">
+                                        Manage
+                                    </v-list-tile>
+                                    <!-- Logout -->
+                                    <v-list-tile @click="logout()">
+                                        Logout
+                                    </v-list-tile>
+                                </v-list>
+                            </v-menu>
                         </v-flex>
-                    </v-layout>
-                    <!-- Login + Register -->
-                    <v-layout v-else>
-                        <v-flex>
+                        <!-- Login/Register -->
+                        <v-flex xs5 v-else>
                             <v-btn small flat @click="auth()">Login/Register</v-btn>
                         </v-flex>
                     </v-layout>
@@ -58,6 +66,9 @@ export default {
         },
         totalItems() {
             return this.$store.getters.getCartItemCount;
+        },
+        isAdmin() {
+            return this.$store.getters.isAdmin;
         }
     },
     methods: {
