@@ -30,11 +30,20 @@
 </template>
 
 <script>
+import { index } from '../../../VueResource/item';
+
 export default {
     data() {
         return {
             search: ''
         }
+    },
+    created() {
+        index().then(response => {
+            this.$store.commit('setItems', response.data.data);
+        }, error => {
+            console.log(error); //TODO: Unhandled error
+        });
     },
     computed: {
         headers() {

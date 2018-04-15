@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import { register } from '../../../VueResource/user';
+
 export default {
     data() {
         return {
@@ -64,25 +66,18 @@ export default {
                 v => !!v || 'Password confirmation is required',
                 v => (v && v == this.password) || 'Password confirmation does not match password'
             ],
-            resource: {},
             responseText: '',
             showMessage: false
         }
     },
-    created() {
-        const actions = {
-            createUser: {method: 'POST'}
-        };
-        this.resource = this.$resource('api/v1/users/register', {}, actions);
-    },
     methods: {
         register() {
-            this.resource.createUser({
-                username: this.username,
-                email: this.email,
-                password: this.password,
-                password_confirmation: this.passwordConfirmation
-            }).then(response => { /* User Created */
+            register(
+                this.username,
+                this.email,
+                this.password,
+                this.passwordConfirmation
+            ).then(response => { /* User Created */
                 this.$store.commit('login', response.data);
             }, error => { /* Errors */
                 this.responseText = '';

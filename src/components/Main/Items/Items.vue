@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { index } from '../../../VueResource/item';
 import Item from './Item';
 
 export default {
@@ -18,14 +19,10 @@ export default {
         }
     },
     created() {
-        const actions = {
-            fetchItems: {method: 'GET'}
-        };
-        this.resource = this.$resource('api/v1/items', {}, actions);
-    },
-    mounted() {
-        this.resource.fetchItems().then(response => {
+        index().then(response => {
             this.$store.commit('setItems', response.data.data);
+        }, error => {
+            console.log(error); //TODO: Unhandled error
         });
     },
     computed: {

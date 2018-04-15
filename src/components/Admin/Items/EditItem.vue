@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { edit } from '../../../VueResource/item';
+
 export default {
     data() {
         return {
@@ -42,13 +44,7 @@ export default {
         }
     },
     created() {
-        this.resource = this.$resource(
-            'api/v1/items/{id}', 
-            {}, {
-                edit: {method: 'PUT', url: 'api/v1/items/{id}', headers: {
-                    'Authorization': 'Bearer ' + this.$store.getters.getAccessToken
-                }}
-            });
+
     },
     computed: {
         edit: {
@@ -73,10 +69,15 @@ export default {
                 item['price'] = this.price;
             }
             if (item) {
-                this.resource.edit({id: this.item.id}, item).then(response => {
-                    console.log(response);
+                edit(
+                    this.item.id, 
+                    this.$store.getters.getAccessToken, 
+                    item.name, 
+                    item.price
+                ).then(response => {
+                    console.log(response); //TODO: update items
                 }, error => {
-                    console.log(error);
+                    console.log(error); //TODO: handle Errors
                 });
             }
         }

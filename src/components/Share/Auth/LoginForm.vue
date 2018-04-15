@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { login } from '../../../VueResource/user';
+
 export default {
     data() {
         return {
@@ -61,16 +63,9 @@ export default {
                 v => !!v || 'Password is required',
                 v => (v && v.length >= 8) || 'Password should be longer than 8 characters'
             ],
-            resource: {},
             responseText: '',
             showMessage: false
         }
-    },
-    created() {
-        const actions = {
-            login: {method: 'POST'}
-        };
-        this.resource = this.$resource('api/v1/users/login', {}, actions);
     },
     methods: {
         toggleLoginMethod() {
@@ -85,7 +80,7 @@ export default {
                 request['email'] = this.email;
             }
 
-            this.resource.login(request).then(response => { /* Logged in successfully */
+            login(request.username, request.email, request.password).then(response => { /* Logged in successfully */
                 this.$store.commit('login', response.data);
             }, error => {
                 this.responseText = error.body.error.message;
