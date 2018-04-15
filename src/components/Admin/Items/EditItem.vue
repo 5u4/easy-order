@@ -23,7 +23,7 @@
                     </v-flex>
                     <v-spacer></v-spacer>
                     <v-flex>
-                        <v-btn flat block color="success">
+                        <v-btn flat block color="success" @click="editItem()">
                             Save
                         </v-btn>
                     </v-flex>
@@ -41,6 +41,15 @@ export default {
             price: this.$store.getters.getEditItem.price
         }
     },
+    created() {
+        this.resource = this.$resource(
+            'api/v1/items/{id}', 
+            {}, {
+                edit: {method: 'PUT', url: 'api/v1/items/{id}', headers: {
+                    'Authorization': 'Bearer ' + this.$store.getters.getAccessToken
+                }}
+            });
+    },
     computed: {
         edit: {
             get: function() {
@@ -52,6 +61,24 @@ export default {
         },
         item() {
             return this.$store.getters.getEditItem;
+        }
+    },
+    methods: {
+        editItem() {
+            let item = {};
+            if (this.name != this.item.name) {
+                item['name'] = this.name;
+            }
+            if (this.price != this.item.price) {
+                item['price'] = this.price;
+            }
+            if (item) {
+                this.resource.edit({id: this.item.id}, item).then(response => {
+                    console.log(response);
+                }, error => {
+                    console.log(error);
+                });
+            }
         }
     }
 }

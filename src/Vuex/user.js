@@ -24,6 +24,9 @@ const user = {
             } else {
                 return false;
             }
+        },
+        getAccessToken(state) {
+            return state.api_token;
         }
     },
     mutations: {
