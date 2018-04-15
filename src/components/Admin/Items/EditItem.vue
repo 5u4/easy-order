@@ -9,10 +9,10 @@
                     <v-flex>
                         <v-layout row wrap>
                             <v-flex style="margin-right: 10px">
-                                <v-text-field label="name" v-model="name"></v-text-field>
+                                <v-text-field label="name" v-model="name" @keyup.enter="editItem()"></v-text-field>
                             </v-flex>
                             <v-flex style="margin-right: 10px">
-                                <v-text-field label="price" v-model="price"></v-text-field>
+                                <v-text-field label="price" v-model="price" @keyup.enter="editItem()"></v-text-field>
                             </v-flex>
                             <v-flex style="margin-right: 10px">
                                 <v-btn icon class="mx-0" @click="destroyItem()">
@@ -72,7 +72,10 @@ export default {
                     item.price,
                     this.$store.getters.getAccessToken
                 ).then(response => {
-                    console.log(response); //TODO: update items
+                    const index = this.$store.getters.getItems.map(item => item.id).indexOf(response.data.data.id);
+                    this.$store.state.Item.items[index].name = response.data.data.name;
+                    this.$store.state.Item.items[index].price = response.data.data.price;
+                    this.$store.commit('toggleEditingItem');
                 }, error => {
                     console.log(error); //TODO: handle Errors
                 });

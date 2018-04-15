@@ -43,7 +43,7 @@ export default {
     data() {
         return {
             valid: false,
-            name: '',
+            name: null,
             price: null,
             nameRules: [
                 v => !!v || 'Name is required',
@@ -72,7 +72,10 @@ export default {
                     this.price,
                     this.$store.getters.getAccessToken
                 ).then(response => {
-                    console.log(response); //TODO: update items
+                    this.name = null;
+                    this.price = null;
+                    this.$store.commit('pushToItems', [response.data.data]);
+                    this.$store.commit('toggleCreatingItem');
                 }, error => {
                     console.log(error); //TODO: handle Errors
                 });

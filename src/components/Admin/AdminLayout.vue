@@ -17,7 +17,7 @@
             </v-layout>
         </v-container>
         <auth></auth>
-        <create-modal></create-modal>
+        <create-modal v-if="isCreating"></create-modal>
         <edit-modal v-if="isEditing"></edit-modal>
     </v-flex>
 </template>
@@ -35,6 +35,9 @@ export default {
         },
         isEditing() {
             return this.$store.getters.isEditingItem;
+        },
+        isCreating() {
+            return this.$store.getters.isCreatingItem;
         }
     },
     components: {
