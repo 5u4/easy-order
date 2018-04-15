@@ -11,6 +11,9 @@
                 v-model="search">
             </v-text-field>
         </v-card-title>
+        <v-btn flat block small color="primary" @click="createItem()">
+            Create Item
+        </v-btn>
         <v-data-table 
             :headers="headers" 
             :items="items" 
@@ -30,7 +33,7 @@
 </template>
 
 <script>
-import { index } from '../../../VueResource/item';
+import { index, deletedIndex } from '../../../VueResource/item';
 
 export default {
     data() {
@@ -43,6 +46,12 @@ export default {
             this.$store.commit('setItems', response.data.data);
         }, error => {
             console.log(error); //TODO: Unhandled error
+        });
+
+        deletedIndex(this.$store.getters.getAccessToken).then(response => {
+            this.$store.commit('pushToItems', response.data.data);
+        }, error => {
+            console.log(error);
         });
     },
     computed: {
@@ -60,10 +69,13 @@ export default {
     },
     methods: {
         editItem(item) {
-            let index = this.items.indexOf(item);
+            const index = this.items.indexOf(item);
             this.$store.commit('editItem', {
                 item: this.$store.getters.getItems[index]
             });
+        },
+        createItem() {
+            this.$store.commit('toggleCreatingItem');
         }
     }
 }

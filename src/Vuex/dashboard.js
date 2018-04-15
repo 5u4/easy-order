@@ -1,6 +1,7 @@
 const dashboard = {
     state: {
         editing: false,
+        creating: false,
         item: null
     },
     getters: {
@@ -9,6 +10,9 @@ const dashboard = {
         },
         getEditItem(state) {
             return state.item;
+        },
+        isCreatingItem(state) {
+            return state.creating;
         }
     },
     mutations: {
@@ -19,6 +23,9 @@ const dashboard = {
         editItem(state, payload) {
             state.editing = true;
             state.item = payload.item;
+        },
+        toggleCreatingItem(state) {
+            state.creating = !state.creating;
         }
     }
 }

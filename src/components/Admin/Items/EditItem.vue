@@ -15,7 +15,7 @@
                                 <v-text-field label="price" v-model="price"></v-text-field>
                             </v-flex>
                             <v-flex style="margin-right: 10px">
-                                <v-btn icon class="mx-0">
+                                <v-btn icon class="mx-0" @click="destroyItem()">
                                     <v-icon color="red">delete</v-icon>
                                 </v-btn>
                             </v-flex>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { edit } from '../../../VueResource/item';
+import { edit, destroy } from '../../../VueResource/item';
 
 export default {
     data() {
@@ -42,9 +42,6 @@ export default {
             name: this.$store.getters.getEditItem.name,
             price: this.$store.getters.getEditItem.price
         }
-    },
-    created() {
-
     },
     computed: {
         edit: {
@@ -71,13 +68,22 @@ export default {
             if (item) {
                 edit(
                     this.item.id, 
-                    this.$store.getters.getAccessToken, 
                     item.name, 
-                    item.price
+                    item.price,
+                    this.$store.getters.getAccessToken
                 ).then(response => {
                     console.log(response); //TODO: update items
                 }, error => {
                     console.log(error); //TODO: handle Errors
+                });
+            }
+        },
+        destroyItem() {
+            if (this.item) {
+                destroy(this.item.id, this.$store.getters.getAccessToken).then(response => {
+                    console.log(response); //TODO: Removed
+                }, error => {
+                    console.log(error); //TODO: handle
                 });
             }
         }

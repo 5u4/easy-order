@@ -19,11 +19,13 @@ export default {
         }
     },
     created() {
-        index().then(response => {
-            this.$store.commit('setItems', response.data.data);
-        }, error => {
-            console.log(error); //TODO: Unhandled error
-        });
+        if (!this.$store.getters.getItems) {
+            index().then(response => {
+                this.$store.commit('setItems', response.data.data);
+            }, error => {
+                console.log(error); //TODO: Unhandled error
+            });
+        }
     },
     computed: {
         items() {

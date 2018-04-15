@@ -17,6 +17,7 @@
             </v-layout>
         </v-container>
         <auth></auth>
+        <create-modal></create-modal>
         <edit-modal v-if="isEditing"></edit-modal>
     </v-flex>
 </template>
@@ -24,6 +25,7 @@
 <script>
 import Auth from '../Share/Auth/AuthLayout';
 import ItemCard from './Items/ItemLayout';
+import CreateModal from './Items/CreateItem';
 import EditModal from './Items/EditItem';
 
 export default {
@@ -38,6 +40,7 @@ export default {
     components: {
         ItemCard,
         Auth,
+        CreateModal,
         EditModal
     }
 }

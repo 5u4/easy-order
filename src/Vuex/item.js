@@ -26,6 +26,12 @@ const item = {
         /* payload: {itemId} */
         showItemDescription(state, payload) {
             state.showingItemId = payload.itemId;
+        },
+        /* payload: [{id, name, price}, ...] */
+        pushToItems(state, payload) {
+            payload.forEach(item => {
+                state.items.push(item);
+            });
         }
     }
 }
