@@ -84,7 +84,9 @@ export default {
         destroyItem() {
             if (this.item) {
                 destroy(this.item.id, this.$store.getters.getAccessToken).then(response => {
-                    console.log(response); //TODO: Removed
+                    const index = this.$store.getters.getItems.map(item => item.id).indexOf(response.data.data.id);
+                    this.$store.state.Item.items[index].deleted = true;
+                    this.$store.commit('toggleEditingItem');
                 }, error => {
                     console.log(error); //TODO: handle
                 });

@@ -2,7 +2,7 @@
     <v-container>
         <v-layout row wrap>
             <v-flex v-for="item in items" :key="item.id" xs3 @click="showDescription(item.id)">
-                <item :item="item"></item>
+                <item :item="item" v-if="!item.deleted"></item>
             </v-flex>
         </v-layout>
     </v-container>
@@ -20,8 +20,12 @@ export default {
     },
     created() {
         if (!this.$store.getters.getItems) {
+            let items = response.data.data;
+            for (let i = 0; i < items.length; i++) {
+                items[i]['deleted'] = false;
+            }
             index().then(response => {
-                this.$store.commit('setItems', response.data.data);
+                this.$store.commit('setItems', items);
             }, error => {
                 console.log(error); //TODO: Unhandled error
             });
