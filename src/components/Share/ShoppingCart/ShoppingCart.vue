@@ -13,13 +13,14 @@
                 <v-flex>
                     Total Price: ${{ totalPrice }}
                 </v-flex>
-                <v-btn flat small block :disabled="totalPrice <= 0">Place Order</v-btn>
+                <v-btn flat small block :disabled="totalPrice <= 0" @click="placeOrder()">Place Order</v-btn>
             </v-container>
         </v-card>
     </v-dialog>
 </template>
 
 <script>
+import { create } from '../../../VueResource/order';
 import CartItem from './CartItem';
 
 export default {
@@ -37,6 +38,22 @@ export default {
         },
         totalPrice() {
             return this.$store.getters.getTotalPrice;
+        }
+    },
+    methods: {
+        placeOrder() {
+            let order = [];
+            this.cartItems.forEach(item => {
+                order.push({
+                    "item_id": item.id,
+                    "quantity": item.quantity
+                })
+            });
+            create(order, this.$store.getters.getAccessToken).then(response => {
+                this.$store.commit('pushToOrders', response.data.data);
+            }, error => {
+                console.log(error); //TODO: Error Message
+            });
         }
     },
     components: {
