@@ -15,21 +15,18 @@ import Item from './Item';
 export default {
     data() {
         return {
-            resource: {},
         }
     },
     created() {
-        if (!this.$store.getters.getItems) {
+        index().then(response => {
             let items = response.data.data;
             for (let i = 0; i < items.length; i++) {
                 items[i]['deleted'] = false;
             }
-            index().then(response => {
-                this.$store.commit('setItems', items);
-            }, error => {
-                console.log(error); //TODO: Unhandled error
-            });
-        }
+            this.$store.commit('setItems', items);
+        }, error => {
+            console.log(error); //TODO: Unhandled error
+        });
     },
     computed: {
         items() {
