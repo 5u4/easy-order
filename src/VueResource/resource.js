@@ -5,4 +5,4 @@ import './user';
 import './item';
 
 Vue.use(VueResource);
-Vue.http.options.root = 'http://localhost:8000';
+Vue.http.options.root = 'http://localhost:8000'; /* Deployment https://cms-easyorder.herokuapp.com */
