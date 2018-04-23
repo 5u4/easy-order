@@ -1,21 +1,19 @@
-# content-management-system
+# Easy Order
 
-> A Vue.js project
+## Description
 
-## Build Setup
+Content management system built on Vue
 
-``` bash
-# install dependencies
-npm install
+## API End Point
 
-# serve with hot reload at localhost:8080
-npm run dev
+Used with a back end project [cms](https://github.com/de2008de/cms-backend).
 
-# build for production with minification
-npm run build
+Back end is deployed on [heroku](https://cms-easyorder.herokuapp.com)
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+## Demo
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+[Demo](http://easyorder.senhung.net)
+
+You can create a new account and test it out or login as an admin (username: admin; password: password)
+
+The site is only for demonstrating, please do not overwhelm the server, thank you!
