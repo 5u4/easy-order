@@ -1,7 +1,5 @@
 <p align="center"><img src="https://github.com/senhungwong/easy-order/blob/master/src/assets/logo.png" height="120"></p>
 
----
-
 ## Description
 
 Content management system built on Vue
