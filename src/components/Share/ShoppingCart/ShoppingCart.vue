@@ -51,6 +51,7 @@ export default {
             });
             create(order, this.$store.getters.getAccessToken).then(response => {
                 this.$store.commit('pushToOrders', response.data.data);
+                this.$store.commit('toggleCartShow');
             }, error => {
                 console.log(error); //TODO: Error Message
             });

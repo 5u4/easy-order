@@ -32,6 +32,10 @@
                                     <v-list-tile to="/main">
                                         Items
                                     </v-list-tile>
+                                    <!-- Orders -->
+                                    <v-list-tile @click="showOrder()">
+                                        Orders
+                                    </v-list-tile>
                                     <!-- Manage -->
                                     <v-list-tile v-if="isAdmin" to="/dashboard">
                                         Manage
@@ -50,16 +54,19 @@
                     </v-layout>
                 </v-flex>
             </v-layout>
+            <order-modal></order-modal>
         </v-container>
     </v-toolbar>
 </template>
 
 <script>
 import Logo from './Logo';
+import OrderModal from '../Order/OrderLayout';
 
 export default {
     components: {
-        Logo
+        Logo,
+        OrderModal
     },
     computed: {
         isLoggedIn() {
@@ -87,6 +94,9 @@ export default {
         },
         showCart() {
             this.$store.commit('toggleCartShow');
+        },
+        showOrder() {
+            this.$store.commit('toggleShowOrderModal');
         }
     }
 }

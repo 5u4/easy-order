@@ -1,13 +1,13 @@
 import Vue from 'vue';
 
 /* URI */
-const itemUri = 'api/v1/orders{/id}{/type}';
+const orderUri = 'api/v1/orders{/id}{/type}';
 
 /**
  * Return all orders
  */
 export const index = () => {
-    return Vue.http.get(itemUri);
+    return Vue.http.get(orderUri);
 };
 
 /**
@@ -17,7 +17,7 @@ export const index = () => {
  * @param {String} accessToken 
  */
 export const create = (orders, accessToken) => {
-    let headers = {}
+    let headers = {};
     if (accessToken) {
         headers['Authorization'] = 'Bearer ' + accessToken;
     }
@@ -25,5 +25,17 @@ export const create = (orders, accessToken) => {
         "orders": orders
     };
     const type = accessToken ? 'login' : 'guest';
-    return Vue.http.post(itemUri, body, {params: {type: type}, headers: headers});
+    return Vue.http.post(orderUri, body, {params: {type: type}, headers: headers});
 };
+
+/**
+ * View one's order history
+ * 
+ * @param {String} accessToken 
+ */
+export const history = (accessToken) => {
+    let headers = {
+        "Authorization": 'Bearer ' + accessToken
+    };
+    return Vue.http.get(orderUri, {params: {type: 'history'}, headers: headers});
+}
