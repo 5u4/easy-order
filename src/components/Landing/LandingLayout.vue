@@ -3,7 +3,7 @@
         <v-container grid-list-md text-md-center>
             <v-layout column wrap>
                 <v-flex style="margin-top: 20%; margin-bottom: 4%;">
-                    <logo :fontSize="5"></logo>
+                    <logo :size="125"></logo>
                 </v-flex>
                 <v-flex style="margin-bottom: 21%">
                     <span class="grey--text text-xs-center">

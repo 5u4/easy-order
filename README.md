@@ -1,4 +1,6 @@
-# Easy Order
+<p align="center"><img src="https://github.com/senhungwong/easy-order/tree/master/src/assets/logo.png" height="120"></p>
+
+---
 
 ## Description
 

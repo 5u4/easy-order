@@ -1,13 +1,18 @@
 <template>
-    <h3 :style="'fontFamily: \'Sacramento\', cursive; fontSize: ' + fontSize + 'em;'">
-        EasyOrder
-    </h3>
+    <img :src="Logo" :height="size">
 </template>
 
 <script>
+import Logo from '../../assets/logo.png';
+
 export default {
     props: {
-        fontSize: Number
+        size: Number
+    },
+    data() {
+        return {
+            Logo
+        }
     }
 }
 </script>

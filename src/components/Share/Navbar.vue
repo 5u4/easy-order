@@ -4,7 +4,7 @@
             <v-layout>
                 <!-- Logo -->
                 <v-flex xs2 offset-xs5>
-                    <logo :fontSize="2"></logo>
+                    <logo :size="60"></logo>
                 </v-flex>
                 <!-- User State -->
                 <v-flex xs5>
